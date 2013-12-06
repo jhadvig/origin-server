@@ -14,3 +14,18 @@ Feature: V2 SDK snapshot and restore
     When I restore the application
     And the mock control_post_restore marker will exist in the gear
     And the new file will not be present in the gear app-root repo
+
+  Scenario: Create app with hot_deploy, snapshot, and restore application with client tools
+    Given the libra client tools
+    And a new client created mock-0.1 application
+    When the application is made publicly accessible
+    And the application is prepared for git pushes
+    And the hot_deploy marker is added to the application repo
+    When I snapshot the application
+    Then the mock control_pre_snapshot marker will exist in the gear
+    And the mock control_post_snapshot marker will exist in the gear
+    When a new file is added and pushed to the client-created application repo
+    Then the new file will be present in the gear app-root repo
+    When I restore the application
+    And the mock control_post_restore marker will exist in the gear
+    And the new file will not be present in the gear app-root repo
