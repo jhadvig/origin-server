@@ -35,7 +35,7 @@ fi
 CPANFILE_PATH=${OPENSHIFT_REPO_DIR}/.openshift/cpanfile
 MAKEFILE_PATH=${OPENSHIFT_REPO_DIR}/.openshift/Makefile.PL
 
-if [ -f "${OPENSHIFT_REPO_DIR}${CPAN}" ]
+if [ -s "${OPENSHIFT_REPO_DIR}${CPAN}" ]
 then
   echo "***  Installing modules from ${CPAN}"
   CPAN_PATH=${OPENSHIFT_REPO_DIR}${CPAN}
@@ -77,7 +77,7 @@ then
 fi
 
 # Installing dependencies with Makefile.PL
-if [ -f "${MAKEFILE_PATH}" ]
+if [ -s "${MAKEFILE_PATH}" ]
 then
   echo "***  Preparing project via Makefile.pl"
   pushd ${OPENSHIFT_REPO_DIR}.openshift > /dev/null
@@ -92,7 +92,7 @@ then
 fi
 
 # Installing dependencies with cpanfile
-if [ -f "${CPANFILE_PATH}" ]
+if [ -s "${CPANFILE_PATH}" ]
 then
   echo "***  Installing modules from cpanfile"
   pushd ${OPENSHIFT_REPO_DIR}.openshift > /dev/null
